@@ -55,7 +55,7 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
-      <div id = "day", "dayNumber">
+      <div id = "day">
         </div>
         <h1>My name is Giovanni Bianchi Fasani</h1>
         
@@ -98,7 +98,11 @@
         var m = d.getMonth();
         var z = d.getDate();
         var y = d.getFullYear();
-        jQuery('.jumbotron .container #day').html(days[x] + ", " + month[m] + " " + z + ", " + y);
+        var hrs = d.getHours();
+        var min = d.getMinutes();
+        var sec = d.getSeconds();
+        jQuery('.jumbotron .container #day').html("Date: " + days[x] + ", " + month[m] + " " + z + ", " + y + "   Time: " + hrs + ":" + min + ":" + sec);
+        
         
       });
     })(jQuery);
