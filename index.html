@@ -57,6 +57,8 @@
       <div class="container">
       <div id = "day">
         </div>
+        <div id = "weather">
+        </div>
         <h1>My name is Giovanni Bianchi Fasani</h1>
         
         <p>I am a Computer Science major at Roosevelt University. This is a rough draft of my personal webpage.</p>
@@ -82,6 +84,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.1.0/jquery.simpleWeather.min.js"></script>
 
     <!-- My Custom Script -->
     <script type="text/JavaScript">
@@ -104,8 +107,28 @@
         jQuery('.jumbotron .container #day').html("Date: " + days[x] + ", " + month[m] + " " + z + ", " + y + "<br /> Time: " + hrs + ":" + min + ":" + sec);
         
       });
+
+      $(document).ready(function() {
+  $.simpleWeather({
+    location: 'Chicago, IL',
+    woeid: '',
+    unit: 'f',
+    success: function(weather) {
+      html = '<h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
+      html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
+      html += '<li class="currently">'+weather.currently+'</li>';
+      html += '<li>'+weather.wind.direction+' '+weather.wind.speed+' '+weather.units.speed+'</li></ul>';
+  
+      $("#weather").html(html);
+    },
+    error: function(error) {
+      $("#weather").html('<p>'+error+'</p>');
+    }
+  });
+});
     })(jQuery);
     </script>
+
 
   </body>
 </html>
