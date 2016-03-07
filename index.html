@@ -66,11 +66,19 @@
         </div>
         <div id = "weather" style = "width:150px; background-color:#E0F2F7">
         </div>
+        <div id = "weatherR">
+        </div>
+
         
         <h1>My name is Giovanni Bianchi Fasani</h1>
-        
+
         <p>I am a Computer Science major at Roosevelt University. This is a rough draft of my personal webpage.</p>
-        
+
+        <h2>My Projects:</h2>
+        <a href = "weather.html">Weather</a>
+        <br />
+        <br />
+
         <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
         
         <a href = "https://www.facebook.com/SSLazioOfficialPage">
@@ -107,6 +115,7 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.1.0/jquery.simpleWeather.min.js"></script>
+    
 
     <!-- My Custom Script -->
     <script type="text/JavaScript">
@@ -147,6 +156,27 @@
       $("#weather").html('<p>'+error+'</p>');
     }
   });
+  $.simpleWeather({
+    
+
+    location: 'Rome',
+    woeid: '',
+    unit: 'c',
+    success: function(weatherR) {
+      
+      html = '<h2><i class="icon-'+weatherR.code+'"></i> '+weatherR.temp+'&deg;'+weatherR.units.temp+'</h2>';
+      html += '<ul><li>'+weatherR.city+', '+weatherR.region+'</li>';
+      html += '<li class="currently">'+weatherR.currently+'</li>';
+      html += '<li>'+weatherR.wind.direction+' '+weatherR.wind.speed+' '+weatherR.units.speed+'</li></ul>';
+      
+      $("#weatherR").html(html);
+
+    },
+    error: function(error) {
+      $("#weatherR").html('<p>'+error+'</p>');
+    }
+  });
+
 });
     })(jQuery);
     </script>

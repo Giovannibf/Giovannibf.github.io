@@ -1,0 +1,68 @@
+
+<html>
+
+<head>
+
+<title>Giovanni Bianchi Fasani</title>
+
+</head>
+
+<body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.1.0/jquery.simpleWeather.min.js"></script>
+
+<div id = "weather">
+</div>
+<div id = "weatherR">
+</div>
+<script type="text/JavaScript">
+    (function ($) {
+$(document).ready(function() {
+  $.simpleWeather({
+    location: 'Chicago, IL',
+    woeid: '',
+    unit: 'c',
+    success: function(weather) {
+      html = '<h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
+      html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
+      html += '<li class="currently">'+weather.currently+'</li>';
+      html += '<li>'+weather.wind.direction+' '+weather.wind.speed+' '+weather.units.speed+'</li></ul>';
+  
+      $("#weather").html(html);
+    },
+    error: function(error) {
+      $("#weather").html('<p>'+error+'</p>');
+    }
+  });
+    $.simpleWeather({
+    
+
+    location: 'Rome',
+    woeid: '',
+    unit: 'c',
+    success: function(weatherR) {
+      
+      html = '<h2><i class="icon-'+weatherR.code+'"></i> '+weatherR.temp+'&deg;'+weatherR.units.temp+'</h2>';
+      html += '<ul><li>'+weatherR.city+', '+weatherR.region+'</li>';
+      html += '<li class="currently">'+weatherR.currently+'</li>';
+      html += '<li>'+weatherR.wind.direction+' '+weatherR.wind.speed+' '+weatherR.units.speed+'</li></ul>';
+      
+      $("#weatherR").html(html);
+
+    },
+    error: function(error) {
+      $("#weatherR").html('<p>'+error+'</p>');
+    }
+  });
+});
+})(jQuery);
+    </script>
+
+</body>
+
+</html>
