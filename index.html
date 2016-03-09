@@ -101,6 +101,7 @@
                             </div>
                         </div>
                         <img src="img/portfolio/clock.png" class="img-responsive" alt="">
+                        Date & Time
                     </a>
                 </div>
                 <div class="col-sm-4 portfolio-item">
@@ -111,6 +112,7 @@
                             </div>
                         </div>
                         <img src="img/portfolio/cake.png" class="img-responsive" alt="">
+                        Weather
                     </a>
                 </div>
                 <div class="col-sm-4 portfolio-item">
@@ -314,24 +316,15 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2>Project Title</h2>
+                            <h2>Weather</h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/cake.png" class="img-responsive img-centered" alt="">
+                            <div id = "weather">
+                            </div>
+                            <div id = "weatherR">
+                            </div>
                             <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
-                            <ul class="list-inline item-details">
-                                <li>Client:
-                                    <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
-                                    </strong>
-                                </li>
-                                <li>Date:
-                                    <strong><a href="http://startbootstrap.com">April 2014</a>
-                                    </strong>
-                                </li>
-                                <li>Service:
-                                    <strong><a href="http://startbootstrap.com">Web Development</a>
-                                    </strong>
-                                </li>
-                            </ul>
+                           
                             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
                         </div>
                     </div>
@@ -339,6 +332,51 @@
             </div>
         </div>
     </div>
+        <script type="text/JavaScript">
+    (function ($) {
+      
+
+      $(document).ready(function() {
+  $.simpleWeather({
+    location: 'Chicago, IL',
+    woeid: '',
+    unit: 'c',
+    success: function(weather) {
+      html = '<h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
+      html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
+      html += '<li class="currently">'+weather.currently+'</li>';
+      html += '<li>'+weather.wind.direction+' '+weather.wind.speed+' '+weather.units.speed+'</li></ul>';
+  
+      $("#weather").html(html);
+    },
+    error: function(error) {
+      $("#weather").html('<p>'+error+'</p>');
+    }
+  });
+  $.simpleWeather({
+    
+
+    location: 'Rome',
+    woeid: '',
+    unit: 'c',
+    success: function(weatherR) {
+      
+      html = '<h2><i class="icon-'+weatherR.code+'"></i> '+weatherR.temp+'&deg;'+weatherR.units.temp+'</h2>';
+      html += '<ul><li>'+weatherR.city+', '+weatherR.region+'</li>';
+      html += '<li class="currently">'+weatherR.currently+'</li>';
+      html += '<li>'+weatherR.wind.direction+' '+weatherR.wind.speed+' '+weatherR.units.speed+'</li></ul>';
+      
+      $("#weatherR").html(html);
+
+    },
+    error: function(error) {
+      $("#weatherR").html('<p>'+error+'</p>');
+    }
+  });
+
+});
+    })(jQuery);
+    </script>
     <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
